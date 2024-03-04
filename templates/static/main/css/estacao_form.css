@@ -1,0 +1,123 @@
+/* Estilos para a página index.html */
+
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+    width: 100%; /* Largura total da página */
+    text-align: center; /* Centralizar os itens */
+}
+
+.nav-item {
+    display: inline-block; /* Alterado de 'float: left;' para 'display: inline-block;' */
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.nav-item:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.nav-item.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+/* Estilos para o corpo da página */
+body {
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+/* Estilos para os botões */
+button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #666;
+}
+
+.titulo {
+    font-size: 50px;
+    font-weight: bold;
+    color: #000;
+    align-items: center;
+}
+
+.background
+{
+    margin-bottom: 30px;
+}
+
+/* Estilos para as labels */
+label {
+    display: block; /* Mostra cada label em uma nova linha */
+    margin-bottom: 10px; /* Espaçamento abaixo de cada label */
+}
+
+/* Estilos para os inputs */
+input[type="text"] {
+    width: 100%; /* Largura total */
+    padding: 10px; /* Espaçamento interno */
+    margin-bottom: 20px; /* Espaçamento abaixo do input */
+    border: 1px solid #ccc; /* Borda cinza */
+    border-radius: 4px; /* Cantos arredondados */
+    box-sizing: border-box; /* Inclui o padding e a borda na largura total */
+}
+
+
+
+/* Estilos para o modal */
+.modal {
+    display: none; /* Esconde o modal por padrão */
+    position: fixed; /* Permite que o modal flutue sobre o conteúdo da página */
+    z-index: 1; /* Define a ordem de empilhamento */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    overflow: auto; /* Adiciona rolagem se o conteúdo for muito grande */
+    background-color: rgba(0,0,0,0.4); /* Fundo escuro */
+}
+
+/* Estilos para o conteúdo do modal */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Centraliza o modal verticalmente */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Largura do modal */
+}
+
+/* Estilos para o botão de fechar */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

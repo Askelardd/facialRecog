@@ -1,4 +1,3 @@
-<!-- pessoa_form.html -->
 {% load static %}
 
 <!DOCTYPE html>
@@ -6,13 +5,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar/Editar Pessoa</title>
+    <link rel="stylesheet" href="{% static "css/index.css" %}">    
+    <link rel="icon" href="{% static 'assets/sketchpixel_logo.jpg' %}" type="image/x-icon">    
+
+    <title>FaceRecognition</title>
 </head>
 <body>
-    <h1>Ola</h1>
-    <a href="{% url 'createUser' %}" class="btn">Registar Rosto</a>
-    <a href="{% url 'reconhecimento_facial' %}" class="btn">Reconhecimento Facial</a>
 
+    
+    <h1 class="titulo">SketchPixel Face Recognition</h1>
+
+    <img class="background" src="{% static 'assets/sketchpixel_logo.jpg' %}" class="img-fluid" id="min" >
+
+
+    <form action="{% url 'createUser' %}" method="GET">
+        <button type="submit" class="btn">Registar Rosto</button>
+    </form>
+    
+    <form action="{% url 'reconhecimento_facial' %}" method="GET">
+        <button type="submit" class="btn">Reconhecimento Facial</button>
+    </form>
+    
+    <form action="{% url 'estacaoForms' %}" method="GET">
+        <button type="submit" class="btn">Criar Estação</button>
+    </form>
 
 
 </body>

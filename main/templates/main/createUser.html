@@ -5,16 +5,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Pessoa</title>
+    <link rel="stylesheet" href="{% static "css/createUser.css" %}">    
+    <link rel="icon" href="{% static 'assets/sketchpixel_logo.jpg' %}" type="image/x-icon">    
+    <title>Criar Utilizador</title>
 </head>
 <body>
-    <h1>Adicionar Pessoa</h1>
+
+    <div class="navbar">
+        <a href="{% url 'createUser' %}" class="nav-item">Registar Rosto</a>
+        <a href="{% url 'reconhecimento_facial' %}" class="nav-item">Reconhecimento Facial</a>
+        <a href="{% url 'estacaoForms' %}" class="nav-item">Criar Estação</a>
+        <a href="{% url 'index' %}" class="nav-item">Index</a>
+
+    </div>
+
+    <h1 class="titulo">Bem vindo , insira aqui os seus dados</h1>
+    <p>Por favor escreva o seu nome sem pequeno</p>
+
     <form method="POST" enctype="multipart/form-data" action="{% url 'adicionar_pessoa' %}" >
         {% csrf_token %}
         <label for="name">Nome:</label><br>
         <input type="text" id="name" name="name" required><br><br>
+
         
-        <label for="photo">Foto:</label><br>
+        <label class="drop-container" id="dropcontainer" for="photo">Foto:</label><br>
         <input type="file" id="photo" name="photo" accept="image/*" required><br><br>
 
         <button type="submit">Salvar</button>

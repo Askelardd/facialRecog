@@ -1,0 +1,74 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/estacao_form.css" %}">    
+    <link rel="icon" href="{% static 'assets/sketchpixel_logo.jpg' %}" type="image/x-icon">    
+    <title>Formulário de Estação de Trabalho</title>
+
+</head>
+<body>
+
+    
+    <div class="navbar">
+        <a href="{% url 'createUser' %}" class="nav-item">Registar Rosto</a>
+        <a href="{% url 'reconhecimento_facial' %}" class="nav-item">Reconhecimento Facial</a>
+        <a href="{% url 'estacaoForms' %}" class="nav-item">Criar Estação</a>
+        <a href="{% url 'index' %}" class="nav-item">Index</a>
+
+    </div>
+
+    <h1 class="titulo">Adicionar Estação de Trabalho</h1>
+    <form id="estacao-form" method="POST" action="{% url 'estacao_create' %}">
+        {% csrf_token %}
+        <label for="name">Nome:</label><br>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="mac_address">Endereço MAC:</label><br>
+        <input type="text" id="mac_address" name="mac_address" value="{{ mac_address }}"><br><br>
+        <button type="submit">Adicionar</button>
+    </form>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>{{ error_message }}</p>
+        </div>
+    </div>
+
+    <!-- Script para exibir o modal -->
+    <script>
+        // Obtém o modal
+        var modal = document.getElementById("myModal");
+
+        // Obtém o botão de fechar
+        var span = document.getElementsByClassName("close")[0];
+
+        // Quando o usuário clica no botão de fechar, fecha o modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Exibe o modal ao carregar a página se houver uma mensagem de erro
+        window.onload = function() {
+            var errorMessage = "{{ error_message }}";
+            if (errorMessage) {
+                modal.style.display = "block";
+            }
+        }
+
+        // Exibe o modal quando há um erro ao submeter o formulário
+        var form = document.getElementById("estacao-form");
+        form.addEventListener("submit", function(event) {
+            var errorMessage = "{{ error_message }}";
+            if (errorMessage) {
+                event.preventDefault(); // Previne o envio do formulário
+                modal.style.display = "block"; // Exibe o modal
+            }
+        });
+    </script>
+</body>
+</html>

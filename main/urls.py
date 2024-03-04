@@ -8,4 +8,6 @@ urlpatterns = [
     path('adicionar-pessoa/', views.adicionar_pessoa, name='adicionar_pessoa'),
     path('video_feed/', views.video_feed, name='video_feed'),
 
+    path('estacao/', views.estacaoForms, name='estacaoForms'),
+    path('estacao/create/', views.estacao_create, name='estacao_create'),
 ]

@@ -1,12 +1,23 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/recog.css" %}">    
+    <link rel="icon" href="{% static 'assets/sketchpixel_logo.jpg' %}" type="image/x-icon">    
     <title>Camera</title>
 </head>
 <body>
-    <h1>Camera</h1>
+
+    <div class="navbar">
+        <a href="{% url 'createUser' %}" class="nav-item">Registar Rosto</a>
+        <a href="{% url 'reconhecimento_facial' %}" class="nav-item">Reconhecimento Facial</a>
+        <a href="{% url 'estacaoForms' %}" class="nav-item">Criar Estação</a>
+        <a href="{% url 'index' %}" class="nav-item">Index</a>
+    </div>
+
+    <h1 class="titulo">Camera</h1>
     <img id="video" src="{% url 'video_feed' %}" width="640" height="480">
 </body>
 </html>
