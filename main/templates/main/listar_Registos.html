@@ -1,0 +1,92 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/registos.css" %}">    
+    <link rel="icon" href="{% static 'assets/sketchpixel_logo.jpg' %}" type="image/x-icon">
+    <title>Listar Registros de Acesso</title>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="{% url 'createUser' %}" class="nav-item">Registar Rosto</a>
+        <a href="{% url 'reconhecimento_facial' %}" class="nav-item">Reconhecimento Facial</a>
+        <a href="{% url 'estacaoForms' %}" class="nav-item">Criar Estação</a>
+        <a href="{% url 'index' %}" class="nav-item">Index</a>
+        <a href="{% url 'registros' %}" class="nav-item">registros</a>
+
+    </div>
+
+    <h1 class="titulo">Registros de Acesso</h1>
+
+
+    <table id="tabela">
+        <thead>
+            <tr>
+                <th class="">Nome<button onclick="sortTable(0, 'asc')">ASC</button><button onclick="sortTable(0, 'desc')">DESC</button></th>
+                <th>Estação de Trabalho<button onclick="sortTable(1, 'asc')">ASC</button><button onclick="sortTable(1, 'desc')">DESC</button></th>
+                <th>Data e Hora de Acesso<button onclick="sortTable(2, 'asc')">ASC</button><button onclick="sortTable(2, 'desc')">DESC</button></th>
+                <th>Endereço MAC<button onclick="sortTable(3, 'asc')">ASC</button><button onclick="sortTable(3, 'desc')">DESC</button></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for registro in registros %}
+            <tr>
+                <td>{{ registro.pessoa.name }}</td>
+                <td>{{ registro.estacao_trabalho.name }}</td>
+                <td>{{ registro.data_hora_acesso }}</td>
+                <td>{{ registro.mac_address }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        function sortTable(columnIndex, order) {
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.getElementById("tabela");
+            switching = true;
+
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("td")[columnIndex];
+                    y = rows[i + 1].getElementsByTagName("td")[columnIndex];
+
+                    var xValue = x.innerHTML.toLowerCase();
+                    var yValue = y.innerHTML.toLowerCase();
+
+                    // Verifica se os valores são datas
+                    if (columnIndex == 2) {
+                        xValue = new Date(xValue).getTime();
+                        yValue = new Date(yValue).getTime();
+                    }
+
+                    if (order == 'asc') {
+                        if (xValue > yValue) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (order == 'desc') {
+                        if (xValue < yValue) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/readPessoa.css" %}">    
+    <link rel="icon" href="{% static 'assets/sketchpixel_logo.jpg' %}" type="image/x-icon">    
+    <title>Gerenciar Usuários</title>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="{% url 'createUser' %}" class="nav-item">Registar Rosto</a>
+        <a href="{% url 'reconhecimento_facial' %}" class="nav-item">Reconhecimento Facial</a>
+        <a href="{% url 'estacaoForms' %}" class="nav-item">Criar Estação</a>
+        <a href="{% url 'index' %}" class="nav-item">Index</a>
+        <a href="{% url 'registros' %}" class="nav-item">Registros</a>
+    </div>
+
+    <h1 class="titulo">Gerenciar Usuários</h1>
+
+    <!-- Tabela para listar todos os usuários -->
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Foto</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pessoa in pessoas %}
+            <tr>
+                <td>{{ pessoa.name }}</td>
+                <td><img src="{{ pessoa.photo.url }}" alt="{{ pessoa.name }}"></td>
+                <td> 
+
+                    <form method="get" action="{% url 'update_pessoa' pessoa.id %}">
+                        <button type="submit">Atualizar</button>
+                    </form>
+
+                    <form method="post" action="{% url 'delete_pessoa' pessoa.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Excluir</button>
+                    </form>
+    
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    

@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/updateUser.css"%}">    
+    <link rel="icon" href="{% static 'assets/sketchpixel_logo.jpg' %}" type="image/x-icon"> 
+    <title>Atualizar Usuário</title>
+</head>
+<body>
+
+    <h1 class="titulo">Atualizar Usuário</h1>
+    
+    <form method="POST" enctype="multipart/form-data" action="{% url 'update_pessoa' pessoa.id %}">
+        {% csrf_token %}
+        <label for="name">Nome:</label><br>
+        <input type="text" id="name" name="name" value="{{ pessoa.name }}" required><br><br>
+    
+        <label for="photo">Foto:</label><br>
+        <input type="file" id="photo" name="photo" accept="image/*"><br><br>
+    
+        <img src="{{ pessoa.photo.url }}" alt="{{ pessoa.name }}"><br><br>
+    
+        <button type="submit">Salvar</button>
+    </form>
+
+</body>
+</html>

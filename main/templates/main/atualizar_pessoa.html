@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/createUser.css" %}">    
+    <link rel="icon" href="{% static 'assets/sketchpixel_logo.jpg' %}" type="image/x-icon">    
+    <title>Atualizar Utilizadores</title>
+</head>
+<body>
+    <h1>Atualizar Usuário</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="nome">Novo Nome:</label><br>
+        <input type="text" id="nome" name="nome" value="{{ pessoa.name }}"><br><br>
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+</html>
