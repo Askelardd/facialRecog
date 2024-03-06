@@ -12,25 +12,25 @@ from datetime import datetime
 
 
 def index(request):
-    return render(request, 'main/index.html')
+    return render(request, 'index.html')
 
 def registos(request):
     registros = RegistroAcesso.objects.all()
-    return render(request, 'main/listar_Registos.html', {'registros': registros})
+    return render(request, 'listar_Registos.html', {'registros': registros})
 
 def createUser(request):
-    return render(request, 'main/createUser.html')
+    return render(request, 'createUser.html')
 
 def reconhecimento_facial(request):
-    return render(request, 'main/reconhecimento_facial.html')
+    return render(request, 'reconhecimento_facial.html')
 
 def estacaoForms(request):
     mac_address = obter_mac_address()
-    return render(request, 'main/estacao_form.html' , {'mac_address': mac_address})
+    return render(request, 'estacao_form.html' , {'mac_address': mac_address})
 
 def listPessoas(request):
     pessoas = Pessoa.objects.all()
-    return render(request, 'main/read_pessoa.html', {'pessoas': pessoas})
+    return render(request, 'read_pessoa.html', {'pessoas': pessoas})
 
 from django.shortcuts import redirect, render
 from .models import Pessoa
@@ -43,7 +43,7 @@ def update_pessoa(request, pk):
             pessoa.photo = request.FILES['photo']
         pessoa.save()
         return redirect('read_pessoa')
-    return render(request, 'main/updateUtilizador.html', {'pessoa': pessoa})
+    return render(request, 'updateUtilizador.html', {'pessoa': pessoa})
 
 def delete_pessoa(request, pk):
     pessoa = Pessoa.objects.get(pk=pk)
@@ -58,7 +58,7 @@ def adicionar_pessoa(request):
         foto = request.FILES['photo']
         pessoa = Pessoa(name=nome, photo=foto)
         pessoa.save()
-    return render(request, 'main/createUser.html')
+    return render(request, 'createUser.html')
 
 
 def obter_mac_address():
@@ -154,14 +154,14 @@ def estacao_create(request, mac_address_param=None):
     if request.method == 'POST':
         name = request.POST['name']
         if EstacaoTrabalho.objects.filter(mac_address=mac_address_param).exists():
-            return render(request, 'main/estacao_form.html', {'mac_address': mac_address_param, 'error_message': 'Endereço MAC já existe'})
+            return render(request, 'estacao_form.html', {'mac_address': mac_address_param, 'error_message': 'Endereço MAC já existe'})
 
         else:
             EstacaoTrabalho.objects.create(name=name, mac_address=mac_address_param)
             return redirect('index')
 
     # Se o método não for POST, apenas renderize o formulário
-    return render(request, 'main/estacao_form.html')
+    return render(request, 'estacao_form.html')
 
 def listar_registros(request):
     # Recuperar todos os registros de acesso
@@ -185,4 +185,4 @@ def listar_registros(request):
         'pessoas': pessoas,
     }
 
-    return render(request, 'main/listar_registros.html', context)
+    return render(request, 'listar_registros.html', context)
