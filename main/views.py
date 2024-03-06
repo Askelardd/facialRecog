@@ -1,5 +1,6 @@
 import uuid
 import cv2
+from django.views.generic import TemplateView
 import face_recognition
 from django.http import StreamingHttpResponse
 from django.shortcuts import render
@@ -9,10 +10,11 @@ import datetime
 from datetime import datetime
 
 
+class IndexView(TemplateView):
+    template_name = 'index.html'
 
-
-def index(request):
-    return render(request, 'index.html')
+#def index(request):
+ #   return render(request, 'index.html')
 
 def registos(request):
     registros = RegistroAcesso.objects.all()
