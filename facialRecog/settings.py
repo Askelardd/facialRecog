@@ -78,24 +78,10 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'facialRecog.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'faceRecognition',
-        'USER': 'postgres',
-        'PASSWORD': 'admin1234',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
-
 db_from_env = dj_database_url.config()
+DATABASES = {
+    'default': db_from_env
+}
 DATABASES['default'].update(db_from_env)
 
 DEFAULT_CHARSET = 'utf-8'
